@@ -1,40 +1,74 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Şehrim - Adana</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
   <style>
+    body {
+      font-size: 1.35rem;
+      background: url('sehrim.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
     .carousel-inner img {
-      border: 4px solid #343a40; /* koyu gri çerçeve */
+      border: 4px solid #343a40;
       border-radius: 10px;
+    }
+
+    .carousel-inner {
+      height: 580px;
+    }
+
+    .carousel-item img {
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    h1, h2, h3 {
+      font-weight: bold;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    section {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    header, footer {
+      background-color: rgba(220, 53, 69, 0.9); /* Bootstrap kırmızı tonunun yarı saydamı */
+    }
+
+    .fs-4, .fs-2, .fs-1 {
+      text-shadow: 1px 1px 2px black;
     }
   </style>
 </head>
 <body>
 
-<!-- Ana Menü Butonu -->
-<a href="index.html" class="btn btn-outline-light position-absolute top-0 start-0 m-3 z-3">
-  ⬅ Ana Menü
-</a>
-
-<header class="bg-danger text-white text-center py-4">
-  <h1>Adana</h1>
-  <p>Lezzetin, tarihin ve sıcağın şehri</p>
+<header class="text-white text-center py-5">
+  <h1 class="mb-3 fs-1">Adana</h1>
+  <p class="fs-2">Lezzetin, tarihin ve sıcağın şehri</p>
+  <a href="anasayfa.html" class="btn btn-light btn-lg mt-4 px-4 py-2">
+    ← Ana Menü
+  </a>
 </header>
 
-<main class="container mt-5">
+<main class="container my-5">
 
   <!-- SLIDER -->
-  <div id="adanaSlider" class="carousel slide mb-5" data-bs-ride="carousel" style="max-height: 400px;">
-    <div class="carousel-inner" style="height: 400px;">
+  <div id="adanaSlider" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
 
       <div class="carousel-item active">
         <div class="d-flex justify-content-center align-items-center h-100">
           <a href="#tas-kopru">
-            <img src="taskopru.jpg" class="d-block" style="max-width: 100%; max-height: 100%;" alt="Taş Köprü">
+            <img src="taskopru.jpg" class="d-block" alt="Taş Köprü">
           </a>
         </div>
       </div>
@@ -42,7 +76,7 @@
       <div class="carousel-item">
         <div class="d-flex justify-content-center align-items-center h-100">
           <a href="#sabanici-muzesi">
-            <img src="merkezcami.jpg" class="d-block" style="max-width: 100%; max-height: 100%;" alt="Sabancı Merkez Camii">
+            <img src="merkezcami.jpg" class="d-block" alt="Sabancı Merkez Camii">
           </a>
         </div>
       </div>
@@ -50,7 +84,7 @@
       <div class="carousel-item">
         <div class="d-flex justify-content-center align-items-center h-100">
           <a href="#ataturk-evi">
-            <img src="ataturkevi.jpg" class="d-block" style="max-width: 100%; max-height: 100%;" alt="Atatürk Evi Müzesi">
+            <img src="ataturkevi.jpg" class="d-block" alt="Atatürk Evi Müzesi">
           </a>
         </div>
       </div>
@@ -58,7 +92,7 @@
       <div class="carousel-item">
         <div class="d-flex justify-content-center align-items-center h-100">
           <a href="#adana-kebap">
-            <img src="adanakebap.jpg" class="d-block" style="max-width: 100%; max-height: 100%;" alt="Adana Kebap">
+            <img src="adanakebap.jpg" class="d-block" alt="Adana Kebap">
           </a>
         </div>
       </div>
@@ -77,39 +111,37 @@
 
   <!-- ŞEHİR BİLGİSİ -->
   <section>
-    <h2 class="fs-2">Genel Bilgiler</h2>
-    <p class="fs-5"><strong>Nüfus:</strong> Yaklaşık 2.3 milyon</p>
-    <p class="fs-5">Adana, Türkiye'nin güneyinde yer alan, sıcak iklimi, kebabı ve kültürel zenginlikleriyle tanınan bir şehirdir. Seyhan Nehri kıyısında kurulmuştur.</p>
+    <h2 class="fs-1 mb-3">Genel Bilgiler</h2>
+    <p class="fs-4"><strong>Nüfus:</strong> Yaklaşık 2.3 milyon</p>
+    <p class="fs-4">Adana, Türkiye'nin güneyinde yer alan, sıcak iklimi, kebabı ve kültürel zenginlikleriyle tanınan bir şehirdir. Seyhan Nehri kıyısında kurulmuştur.</p>
   </section>
 
-  <hr>
-
-  <!-- GEZİLECEK YERLER -->
-
   <section id="tas-kopru">
-    <h3 class="fs-3">Taş Köprü</h3>
-    <p class="fs-5">Dünyanın hâlâ kullanılan en eski taş köprülerinden biridir. Roma döneminde inşa edilmiştir ve Seyhan Nehri üzerindedir.</p>
+    <h3 class="fs-2">Taş Köprü</h3>
+    <p class="fs-4">Dünyanın hâlâ kullanılan en eski taş köprülerinden biridir. Roma döneminde inşa edilmiştir ve Seyhan Nehri üzerindedir.</p>
   </section>
 
   <section id="sabanici-muzesi">
-    <h3 class="fs-3">Sabancı Merkez Camii</h3>
-    <p class="fs-5">Türkiye'nin en büyük camilerinden biridir. Modern mimarisi ve Seyhan Nehri kıyısındaki görüntüsüyle dikkat çeker.</p>
+    <h3 class="fs-2">Sabancı Merkez Camii</h3>
+    <p class="fs-4">Türkiye'nin en büyük camilerinden biridir. Modern mimarisi ve Seyhan Nehri kıyısındaki görüntüsüyle dikkat çeker.</p>
   </section>
 
   <section id="ataturk-evi">
-    <h3 class="fs-3">Atatürk Evi Müzesi</h3>
-    <p class="fs-5">Adana’nın Seyhan ilçesinde bulunan Atatürk Evi, Ulu Önder Mustafa Kemal Atatürk’ün 1923 yılında Adana ziyaretinde kaldığı evdir. Günümüzde müze olarak hizmet veren bu yapı, tarihi eşyalar, fotoğraflar ve Atatürk’ün özel eşyalarıyla ziyaretçilere duygusal bir atmosfer sunar.</p>
+    <h3 class="fs-2">Atatürk Evi Müzesi</h3>
+    <p class="fs-4">Adana’nın Seyhan ilçesinde bulunan Atatürk Evi, Ulu Önder Mustafa Kemal Atatürk’ün 1923 yılında Adana ziyaretinde kaldığı evdir. Günümüzde müze olarak hizmet verir.</p>
   </section>
 
   <section id="adana-kebap">
-    <h3 class="fs-3">Adana Kebap</h3>
-    <p class="fs-5">Adana'nın en meşhur lezzeti olan kebap, etin baharatlarla harmanlanmasıyla yapılan geleneksel bir yemektir. Türkiye genelinde çok sevilir.</p>
+    <h3 class="fs-2">Adana Kebap</h3>
+    <p class="fs-4">Adana'nın en meşhur lezzeti olan kebap, etin baharatlarla harmanlanmasıyla yapılan geleneksel bir yemektir. Türkiye genelinde çok sevilir.</p>
   </section>
 
 </main>
 
-<footer class="bg-danger text-white text-center py-3 mt-5">
-  <small>&copy; 2025 Muhammed Furkan Aslan - Şehrim: Adana</small>
+<footer class="text-white text-center py-4 mt-5 fs-5" style="background-color: rgba(220, 53, 69, 0.85);">
+  <div class="container">
+    <small class="fs-4">Muhammed Furkan Aslan - Şehrim : Adana</small>
+  </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
