@@ -3,33 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <title>Müzik Tutkum - Muhammed Furkan Aslan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <style>
+    html, body {
+      height: 100%;
+      color: #fff;
+      background: url('ilgi-alan.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+
     .card img {
       height: 200px;
       object-fit: cover;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    .card-body {
+      color: #000;
+    }
+
+    header, footer {
+      background-color: rgba(0, 0, 0, 0.85);
+    }
+
+    section {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    input, .form-control {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
-<header class="bg-dark text-white text-center py-4">
-  <h1>İlgi Alanlarım</h1>
+<header class="text-white text-center py-4">
+  <h2>İlgi Alanlarım</h2>
   <p>Müzik Dinlemek & Sanatçı Keşfi</p>
+  <div class="mt-3">
+    <a href="anasayfa.html" class="btn btn-light btn-sm px-4 py-2">← Ana Menü</a>
+  </div>
 </header>
 
 <main class="container mt-5">
-  <!-- Giriş -->
   <section class="mb-4">
     <h2>Müzik Tutkum</h2>
     <p>
-      Müzik benim için duygularımı ifade etmenin bir yoludur. Farklı sanatçılar keşfetmeyi çok severim.
-      En sevdiğim sanatçılardan biri <strong>Billie Eilish</strong> olsa da birçok tarzı severim.
+      Müzik hayatımda her zaman önemli bir yere sahip oldu. Benim için duyguları sakladığım küçük kutular gibiler. Bu yüzden müzik benim için çok önemli. O olmadan hayatıma nasıl devam ederim bilmiyorum.
+      En sevdiğim sanatçılardan biri <strong>Billie Eilish</strong> olsa da birçok tarzı dinlemeyi ve söylemeyi severim.
     </p>
     <p>Aşağıdan bir sanatçı adı girerek sadece ona ait popüler şarkıları görebilirsin.</p>
   </section>
 
-  <!-- Arama Kutusu -->
+
   <section class="mb-5">
     <div class="input-group">
       <input type="text" id="artistInput" class="form-control" placeholder="Sanatçı adı gir (örn. Billie Eilish)">
@@ -37,18 +87,16 @@
     </div>
   </section>
 
-  <!-- Sonuçlar -->
+ 
   <section>
     <div id="results" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
   </section>
 </main>
 
-<footer class="bg-dark text-white text-center py-3 mt-5">
+<footer class="text-white text-center py-4 fs-5 mt-auto" style="background-color: rgba(0, 0, 0, 0.7);">
   <div class="container">
-    <small> Muhammed Furkan Aslan - İlgi Alanlarım</small>
+    <small>Muhammed Furkan Aslan - İlgi Alanlarım</small>
   </div>
-</footer>
-
 </footer>
 
 <script>
@@ -66,7 +114,6 @@ function searchSongs() {
   fetch(`https://itunes.apple.com/search?term=${query}&entity=song&limit=50`)
     .then(res => res.json())
     .then(data => {
-      // Sanatçı adı ile tam eşleşenleri filtrele
       const filtered = data.results.filter(track =>
         track.artistName.toLowerCase() === input.toLowerCase()
       );
