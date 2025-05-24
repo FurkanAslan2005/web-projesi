@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>İletişim - Muhammed Furkan Aslan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('iletisim.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    #app {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: 40px auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+      font-weight: 600;
+      color: #343a40;
+    }
+
+    label {
+      font-weight: 500;
+      color: #212529;
+    }
+
+    input, select, textarea {
+      border-radius: 8px !important;
+      font-size: 0.95rem;
+    }
+
+    .form-check-label {
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+      transform: scale(1.02);
+    }
+
+    .error {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .d-flex.flex-wrap.gap-3 {
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .d-flex.flex-wrap.gap-3 button {
+      flex: 1 1 calc(50% - 10px);
+      min-width: 150px;
+    }
+
+    .text-center a {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app" class="container">
+  <h2 class="mb-4 text-center">İletişim Formu</h2>
+
+  <form @submit.prevent="handleSubmit" id="iletisimForm">
+    <div class="mb-3">
+      <label for="adSoyad">Ad Soyad</label>
+      <input type="text" id="adSoyad" v-model="form.adSoyad" class="form-control">
+      <span class="error" v-if="errors.adSoyad">Ad Soyad boş bırakılamaz</span>
+    </div>
+
+    <div class="mb-3">
+      <label for="email">E-posta</label>
+      <input type="text" id="email" v-model="form.email" class="form-control">
+      <span class="error" v-if="errors.email">Geçerli bir e-posta giriniz</span>
+    </div>
+
+    <div class="mb-3">
+      <label for="telefon">Telefon</label>
+      <input type="text" id="telefon" v-model="form.telefon" class="form-control">
+      <span class="error" v-if="errors.telefon">Telefon sadece rakamlardan oluşmalıdır</span>
+    </div>
+
+    <div class="mb-3">
+      <label for="cinsiyet">Cinsiyet</label>
+      <select id="cinsiyet" v-model="form.cinsiyet" class="form-control">
+        <option disabled value="">Seçiniz</option>
+        <option>Erkek</option>
+        <option>Kadın</option>
+      </select>
+      <span class="error" v-if="errors.cinsiyet">Lütfen cinsiyet seçin</span>
+    </div>
+
+    <div class="mb-3">
+      <label>Hobiler</label><br>
+      <div class="form-check form-check-inline" v-for="hobi in tumHobiler" :key="hobi">
+        <input class="form-check-input" type="checkbox" :value="hobi" v-model="form.hobiler">
+        <label class="form-check-label">{{ hobi }}</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="mesaj">Mesajınız</label>
+      <textarea id="mesaj" class="form-control" v-model="form.mesaj" rows="4"></textarea>
+      <span class="error" v-if="errors.mesaj">Mesaj boş olamaz</span>
+    </div>
+
+    <div class="d-flex flex-wrap gap-3">
+      <button type="button" class="btn btn-success" @click="validateForm">Vue.js ile Kontrol Et</button>
+      <button type="button" class="btn btn-warning" onclick="jsKontrol()">JavaScript ile Kontrol Et</button>
+    </div>
+
+    <div class="d-flex flex-wrap gap-3 mt-3">
+      <button type="button" class="btn btn-secondary" @click="resetForm">Formu Temizle</button>
+      <button type="submit" class="btn btn-primary">Gönder</button>
+    </div>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="anasayfa.html" class="btn btn-dark btn-sm px-4">← Ana Sayfa</a>
+  </div>
+</div>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    form: {
+      adSoyad: '',
+      email: '',
+      telefon: '',
+      cinsiyet: '',
+      hobiler: [],
+      mesaj: ''
+    },
+    errors: {},
+    tumHobiler: ["Müzik", "Spor", "Oyun", "Yazılım", "Seyahat"]
+  },
+  methods: {
+    validateForm() {
+      this.errors = {};
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\d+$/;
+
+      if (!this.form.adSoyad) this.errors.adSoyad = true;
+      if (!emailRegex.test(this.form.email)) this.errors.email = true;
+      if (!phoneRegex.test(this.form.telefon)) this.errors.telefon = true;
+      if (!this.form.cinsiyet) this.errors.cinsiyet = true;
+      if (!this.form.mesaj) this.errors.mesaj = true;
+
+      return Object.keys(this.errors).length === 0;
+    },
+    resetForm() {
+      this.form = {
+        adSoyad: '',
+        email: '',
+        telefon: '',
+        cinsiyet: '',
+        hobiler: [],
+        mesaj: ''
+      };
+      this.errors = {};
+    },
+    handleSubmit() {
+      if (this.validateForm()) {
+        const query = new URLSearchParams({
+          adSoyad: this.form.adSoyad,
+          email: this.form.email,
+          telefon: this.form.telefon,
+          cinsiyet: this.form.cinsiyet,
+          hobiler: this.form.hobiler.join(', '),
+          mesaj: this.form.mesaj
+        }).toString();
+        window.open('gonderilen.html?' + query, '_blank');
+      }
+    }
+  }
+});
+</script>
+
+<script>
+function jsKontrol() {
+  const ad = document.getElementById("adSoyad").value.trim();
+  const mail = document.getElementById("email").value.trim();
+  const tel = document.getElementById("telefon").value.trim();
+  const cinsiyet = document.getElementById("cinsiyet").value;
+  const mesaj = document.getElementById("mesaj").value.trim();
+
+  let hata = "";
+
+  if (ad === "") hata += "Ad Soyad boş bırakılamaz\n";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) hata += "Geçerli bir e-posta giriniz\n";
+  if (!/^\d+$/.test(tel)) hata += "Telefon sadece rakamlardan oluşmalıdır\n";
+  if (cinsiyet === "") hata += "Lütfen cinsiyet seçin\n";
+  if (mesaj === "") hata += "Mesaj boş olamaz\n";
+
+  if (hata) {
+    alert(hata);
+  } else {
+    alert("Form JS ile geçerli!");
+  }
+}
+</script>
+
+</body>
+</html>
